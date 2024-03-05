@@ -1,0 +1,55 @@
+html {
+    background-color: rgb(245, 225, 203);
+}
+
+.a-nav {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16;
+}
+
+.a-for {
+    color: cornflowerblue;
+    font-weight: 700;
+    padding: 5px;
+    width: 20%;
+}
+
+.a-for:hover {
+    color: brown;
+    font-weight: bold;
+}
+
+.a-page {
+    color: white;
+    text-decoration: none;
+    background: cornflowerblue;
+    padding: 25px 10px;
+    width: 20%;
+}
+
+.a-page:hover {
+    background: darkblue;
+    color: yellow;
+}
+
+.abth {
+    padding: 50px;
+    margin: 30px;
+    font-size: 18;
+}
+
+th.th-first {
+    margin: 50px; 
+    padding: 30px;
+    color: firebrick;
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+    font-size: 20;
+}
+
+td.td-first {
+    padding: 30px;
+    color: firebrick;
+
+}
