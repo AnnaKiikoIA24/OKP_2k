@@ -21,7 +21,9 @@ body {
     font-weight: bold;
 }
 
-.a-page {
+/*!!! example !!!*/
+
+.a-page:link {
     color: white;
     text-decoration: none;
     background: cornflowerblue;
@@ -33,6 +35,18 @@ body {
     background: darkblue;
     color: yellow;
 }
+
+.a-page:visited {
+    color: rgb(102, 99, 105)
+}
+
+.a-page:active {
+    color: blueviolet;
+    background: rgb(195, 212, 241);
+    text-decoration: underline;
+}
+
+/*!!! example !!!*/
 
 .abth {
     padding: 50px;
@@ -56,6 +70,7 @@ td.td-first {
 
 #idMainH {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(245, 225, 203);
 }
 
 h1 {
