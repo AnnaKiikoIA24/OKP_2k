@@ -5,23 +5,63 @@
         <meta name = "author" content = "Kiiko Anna"/>
         <link rel="stylesheet" href="css/style.css"/>
         <style>
-            i:first-child {font-weight: bolder; color: brown;}
-            i::after {content: " after";}
-            i::before {content: "before ";}
+            i:first-child, #Welcome {
+                font-weight: bolder; 
+                color: brown;
+                margin-top: 3px;
+            }
+            /* i::after {content: " after";}
+            i::before {content: "before ";} */
         </style>
+
+        <!-- Зовнішній скрипт -->
+        <script src="scripts/lab6Script.js"></script>
+
+        <!-- Внутрішній скрипт -->
+        <script>
+            // Timeout 30s
+            setTimeout(() => {
+                document.body.style.background = `rgb(245, 225, 203)`;
+                document.getElementById("lab6Div").style.background = `rgb(245, 225, 203)`;
+                document.getElementById("idMainH").style.background = `rgb(245, 225, 203)`;
+
+                // replaceWith
+                let newImg = document.createElement("img");
+                newImg.setAttribute("src", "img/fortab3.jpg");
+                document.getElementById("img1").replaceWith(newImg);
+
+                newImg = document.createElement("img");
+                newImg.setAttribute("src", "img/fortab1.jpg");
+                document.getElementById("img3").replaceWith(newImg);
+
+                // remove
+                document.getElementById("img2").remove();
+
+                const tagElements = document.getElementsByTagName("h1");
+                if (tagElements)
+                    tagElements[0].innerHTML = `❃${tagElements[0].innerHTML}❃`;
+                
+                const tagFrame = document.getElementsByTagName("iframe");
+                if (tagFrame)
+                    tagFrame[0].outerHTML = 
+                `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d173627.27555893207!2d9.388830591658136!3d47.159300176257126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479b31441d472ffd%3A0x60eab536dd5ab189!2z0JvQuNGF0YLQtdC90YjRgtC10LnQvQ!5e0!3m2!1sru!2sua!4v1714247138107!5m2!1sru!2sua" 
+                width="100%" height="450" style="border:0; " allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+            }, 30000);
+          </script>
+
     </header>
 
-    <body style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 20;">
-        <div style="position:sticky; top:0px; background-color: rgb(245, 225, 203);">
+    <body style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 20; background-color: whitesmoke;">
+        <div id="lab6Div" style="position:sticky; top:0px; background-color: whitesmoke;">
             <h1 id="idMainH">Main Page</h1>
-            <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/booking_hotels.html">Booking Page</a>
-            <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/FAQ.html">FAQ</a>
-            <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/info_hotel.html">Info Page</a>        
+            <a class="a-nav a-page" id="FAQ" href="pages/FAQ.html">FAQ</a>
+            <a class="a-nav a-page" id="Info" href="pages/info_hotel.html">Info Page</a>
+            <div id="Welcome"></div>
         </div>  
 
-        <div style="float:left"><i>Hotel</i> <i>Site</i></div>
-        <span style="float:right">
-            <img src="img/fortab1.jpg"/><img src="img/fortab2.jpg"/><img src="img/fortab3.jpg"/>
+        <!-- <div style="float:left"><i>Hotel</i> <i>Site</i></div> -->
+        <span id="spanImages" style="float: right">
+            <img id="img1" src="img/fortab1.jpg"/><img id="img2" src="img/fortab2.jpg"/><img id="img3" src="img/fortab3.jpg"/>
         </span>
 
         <div style="margin-top: 60px;">
@@ -39,9 +79,49 @@
 </body>
 
 <footer>
+    <span id="devInfo" style="float: right">
+        <script>
+            // Виклик функції з інформацією про розробника
+            document.write(getDeveoper('Kiiko', 'Anna'));
+        </script>
+    </span>    
     <div>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41199.446786287364!2d30.080786248263735!3d49.80551769772593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d3423e37227b9d%3A0x84e311f8582cc6e8!2z0JHQtdC70LDRjyDQptC10YDQutC-0LLRjCwg0JrQuNC10LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgMDkxMDA!5e0!3m2!1sru!2sua!4v1709595291757!5m2!1sru!2sua" 
         width="100%" height="450" style="border:0; " allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </footer>
 </html>
+
+<script>
+    alert("Вітаємо!");
+    // Функція із зовнішнього скрипта
+    const currUser = dialogUser();
+
+    if (confirm("Ви зможете відвідати інший сайт. \nЯкщо захочете :)")) {
+        location.href = "https://uk.wikipedia.org/wiki/%D0%93%D0%BE%D1%82%D0%B5%D0%BB%D1%8C";
+    }
+    else { 
+
+        // node.prepend - вставляє textNode в початок Welcome
+        const textNode = document.createTextNode(`Welcome to our hotel, ${currUser.name.toUpperCase()}!`);
+        document.getElementById("Welcome").prepend(textNode);
+
+        // Посилання Booking Page створюється лише для користувачів не молодше 18 років 
+        if (Number(currUser.age) >= 18) {
+            let aEl = document.createElement("a");
+            aEl.innerHTML = `Booking Page`;
+            aEl.className = "a-nav a-page";
+            aEl.href = "pages/booking_hotels.html";
+            // node.after
+            document.getElementById("idMainH").after(aEl);
+        }
+
+        // Цикл for
+        let elements = document.querySelectorAll('ol > li');
+        for (let elem of elements) {
+            elem.style.color = "green";
+        }
+
+    }
+
+</script>

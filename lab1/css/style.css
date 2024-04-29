@@ -7,6 +7,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16;
+    margin-right: 10px;
 }
 
 .a-for {
@@ -20,8 +21,6 @@ body {
     color: brown;
     font-weight: bold;
 }
-
-/*!!! example !!!*/
 
 .a-page:link {
     color: white;
@@ -46,8 +45,6 @@ body {
     text-decoration: underline;
 }
 
-/*!!! example !!!*/
-
 .abth {
     padding: 50px;
     margin: 30px;
@@ -70,7 +67,8 @@ td.td-first {
 
 #idMainH {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(245, 225, 203);
+    /* background-color: rgb(245, 225, 203); */
+    background-color: whitesmoke;
 }
 
 h1 {
@@ -84,4 +82,23 @@ h1 {
 ul, ol, dl {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 30;
+}
+
+button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
 }

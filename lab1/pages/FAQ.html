@@ -5,20 +5,71 @@
         <meta name = "author" content = "Kiiko Anna"/>
         <link rel="stylesheet" href="../css/style.css"/>
         <h1>FAQ</h1>
+        <!-- Зовнішній скрипт -->
+        <script src="../scripts/lab6Script.js"></script>        
+        <script>
+            // Виклик функції порівняння рядків
+            const str1 = prompt("Введіть перший рядок для порівняння", "");
+            const str2 = prompt("Введіть другий рядок для порівняння", "");
+            strCompare(str1, str2);
+            
+            // Нове питання
+            let numQ = 4;
+            function addQ() {
+                const inQ = document.getElementById("inQ");
+                if (inQ.value.trim()) {
+                    let li = document.createElement("li");
+                    li.innerHTML = `<i>Question ${numQ++}:</i> ${inQ.value}`;
+                    document.querySelector("ul").append(li);
+                    // data
+                    alert(`new li.data: ${li.lastChild.data}`);
+                    // textContent
+                    alert(`ul.textContent: ${document.querySelector("ul").textContent}`);                    
+                }
+                else {
+                    alert("А питання вже було?");
+                    inQ.focus();
+                }
+                inQ.value = "";
+            }
+
+            // Нова відповідь
+            let numA = 4;
+            function addA() {
+                const inA = document.getElementById("inA");
+                if (inA.value.trim()) {
+                    let li = document.createElement("li");
+                    li.innerHTML = `<b><u>Answer ${numA++}:</u></b> ${inA.value}`;
+                    document.querySelector("ol").append(li);
+                }
+                else {
+                    alert("А яка відповідь?");
+                    inA.focus();
+                }
+                inA.value = "";
+            }
+        </script>
+        
     </header>
 
     <body>
         <ul>
             <li><i>Question 1:</i> How do I get started?</li>
-            <li type = "square"><i>Question 2:</i> What is FAQ?</li>
-            <li type = "circle"><i>Question 3:</i> How can I edit my question and answer?</li>
+            <li><i>Question 2:</i> What is FAQ?</li>
+            <li><i>Question 3:</i> How can I edit my question and answer?</li>
         </ul>
 
+        <button id="addQ" onclick="addQ()">Додати питання</button>
+        <input type="text" id="inQ" value="">
+
         <ol>
-            <li><b><u>Answer 1:</u></b> To get started, simply follow the instructions on our website.</a></li>
-            <li><b><u>Answer 2:</u></b> FAQ stands for Frequently Asked Questions, which contains answers to common queries.</a></li>
-            <li><b><u>Answer 3:</u></b> To edit questions and answers, you can modify the HTML code of this page.</a></li>
+            <li><b><u>Answer 1:</u></b> To get started, simply follow the instructions on our website.</li>
+            <li><b><u>Answer 2:</u></b> FAQ stands for Frequently Asked Questions, which contains answers to common queries.</li>
+            <li><b><u>Answer 3:</u></b> To edit questions and answers, you can modify the HTML code of this page.</li>
         </ol>
+
+        <button id="addA" onclick="addA()">Додати відповідь</button>
+        <input type="text" id="inA" value="">
     </body>
 
     <footer>
