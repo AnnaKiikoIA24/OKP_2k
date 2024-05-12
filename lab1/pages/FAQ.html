@@ -7,12 +7,7 @@
         <h1>FAQ</h1>
         <!-- Зовнішній скрипт -->
         <script src="../scripts/lab6Script.js"></script>        
-        <script>
-            // Виклик функції порівняння рядків
-            const str1 = prompt("Введіть перший рядок для порівняння", "");
-            const str2 = prompt("Введіть другий рядок для порівняння", "");
-            strCompare(str1, str2);
-            
+        <script>            
             // Нове питання
             let numQ = 4;
             function addQ() {
@@ -20,11 +15,7 @@
                 if (inQ.value.trim()) {
                     let li = document.createElement("li");
                     li.innerHTML = `<i>Question ${numQ++}:</i> ${inQ.value}`;
-                    document.querySelector("ul").append(li);
-                    // data
-                    alert(`new li.data: ${li.lastChild.data}`);
-                    // textContent
-                    alert(`ul.textContent: ${document.querySelector("ul").textContent}`);                    
+                    document.querySelector("ul").append(li);         
                 }
                 else {
                     alert("А питання вже було?");
@@ -62,19 +53,72 @@
         <button id="addQ" onclick="addQ()">Додати питання</button>
         <input type="text" id="inQ" value="">
 
-        <ol>
+        <ol id="listAnsw">
             <li><b><u>Answer 1:</u></b> To get started, simply follow the instructions on our website.</li>
             <li><b><u>Answer 2:</u></b> FAQ stands for Frequently Asked Questions, which contains answers to common queries.</li>
             <li><b><u>Answer 3:</u></b> To edit questions and answers, you can modify the HTML code of this page.</li>
         </ol>
 
-        <button id="addA" onclick="addA()">Додати відповідь</button>
-        <input type="text" id="inA" value="">
+        <button id="btnAddA">Додати відповідь</button>
+        <div id="divHintMsvr">Ця кнопка допоможе Вам додати відповідь.</div>
+        <input type="text" id="inA" value="">    
     </body>
 
     <footer>
         <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/index.html">Main Page</a>
         <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/booking_hotels.html">Booking Page</a>
         <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/info_hotel.html">Info Page</a>
+        <span id="devInfo" style="float: right">
+            <script>
+                // Виклик функції з інформацією про розробника
+                document.write(getDeveoper('Pozov', 'Dmitrii', 'Dezigner'));
+                // Виклик функції-обробника події через властивість
+                btnAddA.onclick = addA;
+                // Декілька обробників на одну подію
+                btnAddA.addEventListener("mouseover", hintMsvr);
+                function hintMsvr(event) {
+                    divHintMsvr.style.display = "block";
+                    divHintMsvr.style.top = event.clientY;
+                    divHintMsvr.style.left = event.clientX;
+                }
+                //
+                btnAddA.addEventListener("mouseover", (event) => event.target.style.backgroundColor = "grey");
+                //
+                btnAddA.addEventListener("mouseout", function(event) {
+                    divHintMsvr.style.display = "none";
+                    event.target.style.backgroundColor = "04AA6D"
+                })
+                
+                // Обробник події contextmenu - об'єкт
+                class CtxMenu {
+                    handleEvent(event) {
+                        alert(`Ви працюєте з input ${event.currentTarget.id}`);
+                        event.currentTarget.removeEventListener("contextmenu", this)
+                    }
+                }
+
+                let ctxMenu = new CtxMenu();
+                inQ.addEventListener("contextmenu", ctxMenu)
+                inA.addEventListener("contextmenu", ctxMenu);
+
+                // Підсвічування елементів списку на onclick
+                function lightItemList(event) {
+                    let target = event.target;
+                    if (target.tagName != 'LI') return;
+                    highlight(target);
+                }
+
+                let selectedLi;
+                function highlight(li) {
+                    if (selectedLi) {
+                     selectedLi.classList.remove('highlight');
+                    }
+                    selectedLi = li;
+                    selectedLi.classList.add('highlight');
+                }
+
+                listAnsw.addEventListener("click", lightItemList);
+            </script>
+        </span>
     </footer>
 </html>

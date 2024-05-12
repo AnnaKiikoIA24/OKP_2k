@@ -8,16 +8,17 @@
     </header>
 
     <body>
-        <a href="../img/hotel1.jpg" target="_blank"><img style="height: 668px; width: 668px;" src="../img/hotel1.jpg"/></a>
-
-        <dl>
-            <dt>Основні ознаки, що характеризують готель</dt>
-            <dd>Місткість готелю</dd>
-            <dd>Площа</dd>
-            <dt>Клас готелю</dt>
-            <dd>за рівнем сервісу</dd>
-            <dd>за якістю будівництва й оздоблення будівлі, архітектурою</dd>
-        </dl>
+        <div id="menu">
+            <button id="btnShow" data-action="show" style="display: none;">Show info</button>
+            <button id="btnHide" data-action="hide">Hide info</button>
+        </div>
+        <table>
+            <tr>
+                <td><img src="../img/5stars.jpg" alt="" style="padding-bottom: 5px; width: 50%; height: 50%;"/></td>
+                <td id="tdInfo">1111</td>
+            </tr>
+        </table>
+        <button data-count value="0">Clicked 0</button>
     </body>
 
     <footer>
@@ -25,4 +26,37 @@
         <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/booking_hotels.html">Booking Page</a>
         <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/FAQ.html">FAQ</a>
     </footer>
+
+    <script>
+        class Menu {
+            constructor(elem) {
+                this._elem = elem;
+                elem.onclick = this.onClick.bind(this);
+            }
+            show() {
+                tdInfo.style.display = "";
+                btnHide.style.display = "";
+                btnShow.style.display = "none";
+            }
+            hide() {
+                tdInfo.style.display = "none";
+                btnHide.style.display = "none";
+                btnShow.style.display = "";
+            }
+            onClick(event) {
+                let action = event.target.dataset.action;
+                if (action) {
+                    this[action]();
+                }
+            }
+        }
+        new Menu(menu);
+
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.count != undefined) {
+                event.target.value++;
+                event.target.innerText = `Clicked ${ event.target.value}`;
+            }
+        })
+    </script>
 </html>

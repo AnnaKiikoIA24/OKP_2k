@@ -102,3 +102,16 @@ input[type=text] {
     margin: 8px 0;
     box-sizing: border-box;
 }
+
+#divHintMsvr {
+    margin: 10px;
+    padding: 1px;
+    border: 1px solid #04AA6D;
+    background-color: antiquewhite;
+    display: none;
+    position: absolute;
+}
+
+.highlight {
+    color: #04AA6D;
+}
