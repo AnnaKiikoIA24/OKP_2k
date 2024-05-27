@@ -5,6 +5,15 @@
         <meta name = "author" content = "Kiiko Anna"/>
         <link rel="stylesheet" href="../css/style.css"/>
         <h1>Info Hotel</h1>
+        <style>
+            .txt-over {
+                font-size: 24px;
+                color: brown;
+            }
+            .txt-out {
+                font-size: 18px;
+            }
+        </style>
     </header>
 
     <body>
@@ -12,12 +21,17 @@
             <button id="btnShow" data-action="show" style="display: none;">Show info</button>
             <button id="btnHide" data-action="hide">Hide info</button>
         </div>
-        <table>
+        <table style="width: 100%">
             <tr>
-                <td><img src="../img/5stars.jpg" alt="" style="padding-bottom: 5px; width: 50%; height: 50%;"/></td>
-                <td id="tdInfo">1111</td>
+                <td style="width: 40%"><img src="../img/5stars.jpg" alt="" style="padding-bottom: 5px; width: 95%; height: 95%;"/></td>
+                <td id="tdInfo" class="txt-out">
+                    Готель - це не просто місце для ночівлі, але й притулок для відпочинку, зустрічей та пригод. Від маленьких сімейних готелів до величезних розкішних комплексів, готелі пропонують широкий спектр послуг і зручностей, щоб задовольнити потреби будь-якого гостя.
+                    <br>У сучасних готелях зазвичай є комфортабельні номери з усіма необхідними зручностями, такими як телевізори, кондиціонери, бездротовий інтернет і меблі для відпочинку. Багато готелів також мають ресторани, бари, спа-центри, басейни, фітнес-зали та інші розваги для гостей.
+                    <br>Готелі можуть бути розташовані як у центрі міста, так і на околицях, залежно від їх призначення та специфіки. Вони можуть пропонувати різні типи номерів, від економ до люкс, щоб відповісти різним бюджетам та вимогам.
+                    <br>Найкращі готелі не лише забезпечують комфортне проживання, але й створюють незабутній досвід для своїх гостей, допомагаючи їм насолоджуватися подорожами та відпочинком.</td>
             </tr>
         </table>
+        <div id="divRelTarget">1111</div>
         <button data-count value="0">Clicked 0</button>
     </body>
 
@@ -34,12 +48,12 @@
                 elem.onclick = this.onClick.bind(this);
             }
             show() {
-                tdInfo.style.display = "";
+                tdInfo.style.visibility = "visible";
                 btnHide.style.display = "";
                 btnShow.style.display = "none";
             }
             hide() {
-                tdInfo.style.display = "none";
+                tdInfo.style.visibility = "hidden";
                 btnHide.style.display = "none";
                 btnShow.style.display = "";
             }
@@ -58,5 +72,18 @@
                 event.target.innerText = `Clicked ${ event.target.value}`;
             }
         })
+
+        tdInfo.onmouseover = function(event) {
+            event.target.className = "txt-over";
+            divRelTarget.style.display = "block";
+            divRelTarget.style.top = event.clientY;
+            divRelTarget.style.left = event.clientX;
+            divRelTarget.innerText = `Ви покинули елемент ${event.relatedTarget ? event.relatedTarget.tagName : "null"}`
+        }
+
+        tdInfo.onmouseout = function(event) {
+            event.target.className = "txt-out";
+            divRelTarget.style.display = "none";
+        }
     </script>
 </html>

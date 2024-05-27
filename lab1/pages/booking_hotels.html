@@ -8,65 +8,113 @@
         <meta name = "author" content = "Kiiko Anna"/>
         <link rel="stylesheet" href="../css/style.css"/>
         <h1>Booking Hotels</h1>
-        <a href="#target-bottom" name="target-top">Перейти вниз</a>
     </header>
 
     <body>
-        <div style="width: 65%;">
-            <table class="abth">
-                <tr>
-                    <td><a href="./info_hotel.html" target="_blank"><img src="../img/hotel1.jpg"/></a></td>
-                    <td><img src="../img/hotel2.jpg"/></td>
-                    <td><img src="../img/hotel3.jpg"/></td>
-                </tr>
-                <tr>
-                    <td><i>↑ Картинка відкриється в новому вікні збільшена вдвічі</i></td>
-                    <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <td colspan="3">Готель "Міднайт Сіті" - це невеликий курортний комплекс, 
-                        розташований серед живописних зелених лісів та гірських хребтів. 
-                        Це місце пропонує неймовірні краєвиди на гори, долини та річку, що оточують його. 
-                        Кожен номер у готелі має велике вікно з панорамним видом, що дозволяє гостям 
-                        насолоджуватися природою, не виходячи з номеру. Тут також є красивий сад з екзотичними рослинами 
-                        та зонами відпочинку, де можна розслабитися і насолодитися спокоєм і тишею гірського краю.</td>
-                </tr>
-                <tr>
-                    <td><img src="../img/hotel4.jpg"/></td>
-                    <td><img src="../img/hotel5.jpg"/></td>
-                    <td><img src="../img/hotel6.jpg"/></td>
-                </tr>
-                <tr>
-                    <td rowspan="2" colspan="2"><font size="14" face="Georgia">Готельний бізнес</font> - це вид діяльності, пов'язаний з наданням розміщення та інших послуг 
-                        для тимчасового перебування гостей. Готель може бути різного розміру і класифікації - від невеликих 
-                        сімейних готелів до розкішних готелів класу "п'ять зірок". У бізнес-готелях часто є ресторани, 
-                        конференц-зали, спа-центри та інші додаткові послуги для зручності гостей. Важливо мати гарну команду персоналу, 
-                        яка забезпечить високий рівень обслуговування та комфорту для гостей. Також важливо мати стратегію маркетингу 
-                        та продажу, щоб залучати нових клієнтів і підтримувати вірних.</td>
-                    <td>Готель розташовується в центральній частині міста, 
-                        поруч з головними визначними місцями та зручностями. Цей готель може бути високим з 
-                        вражаючою архітектурою та стильними номерами. У ньому можуть бути ресторани, спа-центр, басейн та 
-                        тренажерний зал для гостей. Персонал привітний та професійний, завжди готовий вам допомогти. 
-                        Гарний готель створить атмосферу комфорту та розкоші під час вашого перебування.</td>                        
-                </tr>
-                <tr>
-                    <td>Цікавий готель на гарячих джерелах може мати комфортні номери з прямим доступом до термальних вод. 
-                        Це може бути розкішний комплекс з басейнами з гарячою водою, спа-процедурами і унікальними джерельними процедурами. 
-                        Гості такого готелю можуть насолоджуватись краєвидом на гори, вечірніми масажами та романтичними вечорами біля джерел. 
-                        А також це може бути ідеальне місце для відпочинку та відновлення здоров'я після насиченого дня.</td>
-                </tr>
-            </table>
-        </div>
-    </body>
-
-    <footer>
-        <a name="target-bottom" href="#target-top">Перейти нагору</a>
-        <br>
         <div style="margin-left: 60px;">
             <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/index.html">Main Page</a>
             <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/FAQ.html">FAQ</a>
             <a class="a-nav a-page" href="file:///D:/git_repos/OKP/lab1/pages/info_hotel.html">Info Page</a>
         </div>
+
+        <div>
+            <table class="abth">
+                <tr>
+                    <td><img src="../img/hotel1.jpg"/></td>
+                    <td><img src="../img/hotel2.jpg"/></td>
+                    <td><img src="../img/hotel3.jpg"/></td>
+                    <td><img src="../img/hotel4.jpg"/></td>
+                    <td><img src="../img/hotel5.jpg"/></td>                    
+                </tr>
+            </table>
+        </div>
+
+        <div id="divMoveTo">
+            Перетягніть зображення сюди
+        </div>        
+    </body>
+
+    <footer>
+
+        <script>
+            // У циклі всім <img> документа призначаємо обробники подій onmousedown, ondragstart
+            for (const elem of document.getElementsByTagName('img')) {
+                elem.onmousedown = onMouseDown;
+                elem.ondragstart = () => false;
+            }
+            // Тут зберігаємо елемент <img>, що був перенесений на цільовий елемент #divMoveTo
+            let movedImg = null;
+
+            function onMouseDown(event) {
+                let imgElem = event.target;
+                let shiftX = event.clientX - imgElem.getBoundingClientRect().left;
+                let shiftY = event.clientY - imgElem.getBoundingClientRect().top;
+
+                let parentElem = imgElem.parentElement;
+                if (parentElem.tagName != "TD")
+                    return false;
+                // (1) відстежити натискання
+                // (2) подготувати до переміщення:
+                // розмістити поверх решти вмісту та в абсолютних координатах
+                imgElem.style.position = 'absolute';
+                imgElem.style.zIndex = 1000;
+                // перемістимо в body, щоб <img> був точно не всередині position:relative
+                document.body.append(imgElem);
+
+                // (3) переміщати по екрану
+                document.addEventListener('mousemove', onMouseMove);
+               
+                // (4) покласти <img>, видалити непотрібні обробники подій
+                imgElem.onmouseup = function() {
+
+                    // Якщо мишка над цільовим #divMoveTo
+                    if (droppableTarget) {
+                        imgElem.style.left = divMoveTo.getBoundingClientRect().left + 5;
+                        imgElem.style.top = divMoveTo.getBoundingClientRect().top + 5;
+                        // Раніше перенесений <img> повертаємо на місце imgElem
+                        if (movedImg) {
+                            movedImg.style.position = 'relative';
+                            movedImg.style.left = 0;
+                            movedImg.style.top = 0;
+                            parentElem.appendChild(movedImg);                             
+                        }
+                        movedImg = imgElem;
+                    }
+                    // Якщо мишка НЕ над цільовим #divMoveTo, повертаємо imgElem на його попереднє місце
+                    else {
+                        imgElem.style.position = 'relative';
+                        imgElem.style.left = 0;
+                        imgElem.style.top = 0;
+                        parentElem.appendChild(imgElem);                                             
+                    }   
+                    document.body.style.cursor = "default";  
+
+                    document.removeEventListener('mousemove', onMouseMove);
+                    imgElem.onmouseup = null;
+                };    
+
+                // потенційна ціль перенесення, над якою ми проходимо прямо зараз
+                let droppableTarget = null;
+
+                function onMouseMove(event) {
+                    imgElem.style.left = event.pageX - shiftX + 'px';
+                    imgElem.style.top = event.pageY - shiftY + 'px';
+
+                    droppableTarget = null;
+                    let elements = document.elementsFromPoint(event.clientX, event.clientY);
+                    elements.forEach((elt) => {
+                        if (elt.id === "divMoveTo") {
+                            droppableTarget = elt;
+                            document.body.style.cursor = "pointer";
+                            return;
+                        }
+                    });
+
+                    if (!droppableTarget)
+                        document.body.style.cursor = "not-allowed";
+                };
+            };
+        </script>
     </footer>
 
 </html>

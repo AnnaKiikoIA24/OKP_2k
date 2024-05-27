@@ -47,7 +47,7 @@ body {
 
 .abth {
     padding: 50px;
-    margin: 30px;
+    margin: 10px;
     font-size: 18;
 }
 
@@ -114,4 +114,28 @@ input[type=text] {
 
 .highlight {
     color: #04AA6D;
+}
+
+#divRelTarget {
+    margin: 10px;
+    padding: 1px;
+    border: 1px solid #04AA6D;
+    background-color: antiquewhite;
+    display: none;
+    position: absolute;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+#divMoveTo {
+    margin-left: 60px; 
+    width: 334px; 
+    height: 334px; 
+    text-align: center; 
+    color: brown;
+    font-weight: 800;
+    border: 5px solid cornflowerblue; 
+    background-image: url(../img/div-background.jpg);  
+    background-repeat: no-repeat;
+    background-size: cover;    
 }
